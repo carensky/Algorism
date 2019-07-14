@@ -20,7 +20,21 @@ public class Q9 {
 		
 		int sum = 0;
 		
-		for(int i=a; i<=b; i++)
+		int start;
+		int end;
+		
+		if(a>b)
+		{
+			start = b;
+			end   = a;
+		}
+		else
+		{
+			start = a;
+			end   = b;
+		}
+		
+		for(int i=start; i<=end; i++)
 		{
 			sum += i;
 		}

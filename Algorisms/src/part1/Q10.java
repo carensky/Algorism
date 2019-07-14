@@ -13,7 +13,7 @@ public class Q10 {
 		System.out.println("aÀÇ °ª : ");
 		
 		int a = sc.nextInt();
-		
+
 		int b;
 		
 		while(true)

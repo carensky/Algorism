@@ -16,13 +16,24 @@ public class Q7 {
 		
 		int sum = 0;
 		
-		for(int i=0; i<n; i++)
+		for(int i=1; i<=n; i++)
 		{
 			sum += i;
 		}
 		
-		System.out.println("합은 : " + sum);
+		System.out.print("합은 : ");
+		System.out.print("'");
 		
+		for(int j=1; j<=n; j++)
+		{
+			System.out.print(j + " + ");
+			
+			if(j == n)
+			{
+				System.out.print(j + " = ");
+			}
+		}
+		System.out.print(sum + "'");
 	}
 
 }

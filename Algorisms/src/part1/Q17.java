@@ -13,20 +13,31 @@ public class Q17 {
 		System.out.println("´Ü¼ö : ");
 		
 		int n = sc.nextInt();
-
-		for (int i = 1; i <= n; i++) 
-		{ 					
-			for (int j = 1; j <= n - i + 1; j++)
+		
+		int temp = n;
+		int b=0;
+		
+		while(temp > 0)
+		{
+			temp /=10;
+			b++;
+		}
+		
+		for(int i=1; i<=n; i++)
+		{
+			for(int j=1; j<=((n-i)*b); j++)
 			{
-				System.out.print(' ');
+				System.out.print(" ");
 			}
-			
-			for (int j = 1; j <= (i - 1) * 2 + 1; j++)
+			for(int k=1; k<=((i*2-1)*b) && i<10; k++)
 			{
 				System.out.print(i);
 			}
-				
-			System.out.println(); 						
+			for(int h=1; h<=(i*2-1) && i>=10; h++)
+			{
+				System.out.print(i);
+			}
+			System.out.println();
 		}
 	}
 
