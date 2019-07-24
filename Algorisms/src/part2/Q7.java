@@ -2,7 +2,7 @@ package part2;
 
 import java.util.Scanner;
 
-public class Q6 {
+public class Q7 {
 
 	public static void main(String[] args) 
 	{
@@ -31,12 +31,30 @@ public class Q6 {
 	{
 		int digits = 0; // 변환 뒤의 나머지
 		String dchar = "0123456789ABCDEF";
-
+		int remainNo = 0; // 마지막 나머지
+		
 		do {
+			if(digits != 0)
+			{
+				System.out.println(cd + " | " + "    " + no + "  ..." + dchar.charAt(no % cd));
+				System.out.println("  +---------");
+			}
+			else
+			{
+				System.out.println(cd + " | " + "    " + no);
+				System.out.println("  +---------");
+			}
 			cno[digits++] = dchar.charAt(no % cd); // r로 나눈 나머지
+			
+			if(no<cd)
+			{
+				remainNo = no;
+			}
 			no /= cd; // x는 몫
 		} while (no != 0);
 
+		System.out.println("        " + no + " ..." + remainNo);
+		
 		for (int i = 0; i < digits / 2; i++)
 		{ 
 			char temp = cno[i];
@@ -45,4 +63,6 @@ public class Q6 {
 		}
 		return digits;
 	}
+	
+
 }

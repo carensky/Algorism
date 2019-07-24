@@ -6,47 +6,43 @@ public class Q4 {
 
 	public static void main(String[] args) 
 	{
-		int[] a = {1,2,3,4};
-		
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("�����Է� : ");
+		System.out.println("요소 개수 입력 : ");
+		int input = sc.nextInt();
+		int[] num1 = new int[input]; // num배열
+		int[] num2 = new int[input]; // num2 배열
 		
-		int count = sc.nextInt();
-		
-		int[] b = new int[count];
-		
-		boolean result = copy(a,b);
-		
-		if(result == true)
+		for(int i=0; i<input; i++) // num배열 값 입력
 		{
-			for(int i=0; i<b.length; i++)
-			{
-				System.out.println("�迭 b : " + b[i]);
-			}
-		}
-		else
-		{
-			System.out.println("�迭 ����� ������ �ٸ��ϴ�.");
+			System.out.println(i + "번째 요소 값을 입력 : ");
+			num1[i] = sc.nextInt(); // 배열의 값 추가
 		}
 		
+		copy(num1, num2); // num 배열내에 모든 요소를 num2에 복사
 	}
 	
-	static boolean copy(int[]a, int[]b)
+	static void copy(int[] num1, int[] num2)
 	{
-		if(a.length == b.length)
+		for(int i=0; i<num1.length; i++)
 		{
-			for(int j=0; j<a.length; j++)
-			{
-				b[j] = a[j];
-			}
-			
-			return true;
+			num2[i] = num1[i];
 		}
-		else
+		
+		System.out.println("num1 배열의 값 : ");
+		
+		for(int i=0; i<num1.length; i++)
 		{
-			return false;
+			System.out.print(num1[i] + " ");
+		}
+		
+		System.out.println();
+		
+		System.out.println("num2 배열의 값 : ");
+		
+		for(int i=0; i<num2.length; i++)
+		{
+			System.out.print(num2[i] + " ");
 		}
 	}
-
 }

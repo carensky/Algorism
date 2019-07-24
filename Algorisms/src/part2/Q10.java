@@ -2,13 +2,13 @@ package part2;
 
 public class Q10 {
 
-	static final int VMAX = 21; // ½Ã·ÂÀÇ ºĞÆ÷ (0.0ºÎÅÍ 0.1 ´ÜÀ§·Î 21°³)
+	static final int VMAX = 21; // ì‹œë ¥ë¶„í¬í‘œ (0.0~2.0 ê¹Œì§€) 0.1 í¬ê¸°ë§Œí¼ ë²”ìœ„ ì§€ì •í•´ì„œ ì´ 21ê°œì˜ ë²”ìœ„
 
 	static class PhyscData 
 	{
-		String name;
-		int height;
-		double vision;
+		String name;   // ì´ë¦„
+		int height;    // í‚¤
+		double vision; // ì‹œë ¥
 
 		PhyscData(String name, int height, double vision) 
 		{
@@ -17,44 +17,62 @@ public class Q10 {
 			this.vision = vision;
 		}
 	}
+	
+	public static void main(String[] args) 
+	{
+		PhyscData[] chart = 
+		{ 
+			new PhyscData("ê°•ì•„ì§€", 162, 0.3), 
+			new PhyscData("ê³ ì–‘ì´", 173, 0.7),
+			new PhyscData("ì½”ë¼ë¦¬", 175, 2.0), 
+			new PhyscData("ë…ìˆ˜ë¦¬", 171, 1.5), 
+			new PhyscData("ëŒê³ ë˜", 168, 1.2),
+			new PhyscData("ë‹¤ëŒì¥", 174, 1.2), 
+			new PhyscData("ì½”ë¿”ì†Œ", 169, 0.8), 
+		};
+		
+		int[] vc = new int[VMAX]; // ì‹œë ¥ë¶„í¬í‘œ ë§Œí¼ì˜ ë°°ì—´ì„ ìƒì„±
 
-	static void distVision(PhyscData[] dat, int[] dist) {
-		int i = 0;
-		dist[i] = 0;
-
-		for (i = 0; i < dat.length; i++)
+		visionChart(chart, vc);
+		
+		System.out.println("â˜…ì‹ ì²´ê²€ì‚¬ë¦¬ìŠ¤íŠ¸â˜…");
+		System.out.println("ì´ë¦„     í‚¤     ì‹œë ¥ ");
+		System.out.println("-------------");
+		for(int i=0; i<chart.length; i++)
 		{
-			if (dat[i].vision >= 0.0 && dat[i].vision <= VMAX / 10.0)
+			System.out.print(chart[i].name + "  ");
+			System.out.print(chart[i].height + "  ");
+			System.out.print(chart[i].vision + "  ");
+			System.out.println();
+		}
+		
+		System.out.println();
+		System.out.println("â˜…ì‹œë ¥ë¶„í¬â˜…");
+		for (int i = 0; i < VMAX; i++) 
+		{
+			System.out.printf("%3.1f~ï¼š", i / 10.0);
+			for (int j = 0; j < vc[i]; j++)
 			{
-				dist[(int) (dat[i].vision * 10)]++;
+				System.out.print('*');
+			}
+			System.out.println();
+		}
+	}
+	
+	static void visionChart(PhyscData[] chart, int[] vc) // ì‹œë ¥ë¶„í¬í‘œ
+	{
+		int i = 0;
+		vc[i] = 0;
+
+		for (i = 0; i < chart.length; i++)
+		{
+			if (chart[i].vision >= 0.0 && chart[i].vision <= VMAX / 10.0)
+			{
+				vc[(int) (chart[i].vision * 10)]++;
 			}
 		}
 			
 	}
 
-	public static void main(String[] args) 
-	{
-		PhyscData[] x = 
-		{ 
-			new PhyscData("ÀÌ³ª·É", 162, 0.3), 
-			new PhyscData("Àü¼­Çö", 173, 0.7),
-			new PhyscData("ÀÌ¼ö¹Î", 175, 2.0), 
-			new PhyscData("È«ÁØ±â", 171, 1.5), 
-			new PhyscData("À¯ÁöÈÆ", 168, 1.2),
-			new PhyscData("ÀÌÈ£¿¬", 174, 1.2), 
-			new PhyscData("±èÇÑ°á", 169, 0.8), 
-		};
-		
-		int[] vdist = new int[VMAX];
-
-		distVision(x, vdist);
-		
-		for (int i = 0; i < VMAX; i++) 
-		{
-			System.out.printf("%3.1f~£º", i / 10.0);
-			for (int j = 0; j < vdist[i]; j++)
-				System.out.print('*');
-			System.out.println();
-		}
-	}
+	
 }

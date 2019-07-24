@@ -1,38 +1,33 @@
 package part2;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Q1 {
 
 	public static void main(String[] args) 
 	{
-		Random rand = new Random();
+		Random ran = new Random();
 
-	    System.out.println("Å°ÀÇ ÃÖ´ë°ª");
-	    int num = 1 + rand.nextInt(10);      // ³­¼ö »ı¼º
-	    int[] height = new int[num];         // ³­¼ö·Î »ı±ä num ¸¸Å­ ¹è¿­À» »ı¼º
+	    System.out.println("---ì‚¬ëŒ ìˆ˜ì™€ í‚¤ ëœë¤ ìƒì„±---");
+	    
+	    int people = ran.nextInt(10); // ì‚¬ëŒ ìˆ˜ ëœë¤ ìƒì„±
+	    
+	    int[] height = new int[people]; // ëœë¤ ìƒì„±ëœ ì‚¬ëŒë“¤ ìˆ˜ ë§Œí¼ height ë°°ì—´ ìƒì„±
 
-	    for (int i = 0; i < num; i++) 
+	    for (int i = 0; i < people; i++) 
 	    {
-	       height[i] = 100 + rand.nextInt(90);      
-	       System.out.println("height[" + i + "]£º" + height[i]);
+	       height[i] = 100 + ran.nextInt(100); // height ë°°ì—´ì— ê°’ë“¤ì„ ë‚œìˆ˜ë¡œ ì„¤ì •
 	    }
-
-	    System.out.println("ÃÖ´ë°ªÀº " + max(height));
+	    
+	    peopleData(height);
 	}
 	
-	static int max(int[] a) 
+	static void peopleData(int[] height)
 	{
-	    int max = a[0];
-	    for (int i = 1; i < a.length; i++)
-	    {
-	    	if (a[i] > max)
-	    	{
-	    		max = a[i];
-	    	}
-		    
-	    }
-	    return max;
+		for(int i=0; i<height.length; i++)
+		{
+			System.out.println(i + "ë²ˆì§¸ ì‚¬ëŒì˜ í‚¤ëŠ” : " + height[i]);
+		}
 	}
-
 }
