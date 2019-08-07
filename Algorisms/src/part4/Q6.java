@@ -1,5 +1,9 @@
 package part4;
 
+import java.util.Scanner;
+
+import javax.management.Query;
+
 public class Q6<E> {
 
 	public static class EmptyGqueueException extends RuntimeException 
@@ -16,6 +20,8 @@ public class Q6<E> {
 	private int max; // 큐의 용량
 	private int num; // 현재의 데이터 수
 	private E[] que; // 큐의 본체
+	private int front; // 프런트 요소 커서
+	private int rear;  // 리어 요소 커서
 	
 	// 생성자
 	public Q6(int capacity)
@@ -69,19 +75,6 @@ public class Q6<E> {
 			return que[num - 1]; // 가장 위에있는(가장 먼저 인큐된 데이터 출력)
 		}
 
-		// INDEX
-		public int indexOf(E x) 
-		{
-			for (int i = 0; i < num; i++)
-			{
-				if (que[i] == x) // 검색성공
-				{
-					return i;
-				}
-			}
-			return -1; // 검색실패
-		}
-
 		// 큐를 비움
 		public void clear() 
 		{
@@ -128,4 +121,62 @@ public class Q6<E> {
 				System.out.println();
 			}
 		}
+		
+		// INDEX
+		public int indexOf(E x) 
+		{
+			for (int i = 0; i < num; i++)
+			{
+				if (que[(i + front) % max] == x) // 검색성공
+				{
+					return i + front;
+				}
+			}
+			return -1; // 검색실패
+		}
+		
+		// 큐에서 x를 검색하여 머리부터 몇 번 째인가(찾지 못하면 0)를 반환
+		public int search(E x) 
+		{
+			for (int i = 0; i < num; i++)
+			{
+				if (que[(i + front) % max] == (x))   // 검색 성공
+				{
+			        return i + 1;
+				}
+			}
+		    return 0; // 검색실패
+		}
+		
+		public static void main(String[] args)
+		{
+			Scanner sc = new Scanner(System.in);
+			
+			Q6 i = new Q6<>(20);
+			
+			i.enque(1);
+			i.enque("가");
+			i.enque("a");
+			
+			System.out.println("큐의 사이즈 : " + i.size());
+			
+			System.out.println("-----디큐 전-----");
+			System.out.print("인덱스 찾을 값 : ");
+			System.out.println("a는 " + i.indexOf("a") + "번 째에 있다.");
+		
+			System.out.print("search할 값 : ");
+			System.out.println("a는 " + i.search("a") + "번 째에 있다.");
+			
+			System.out.println("-----디큐 후-----");
+			i.deque();
+			
+			System.out.print("인덱스 찾을 값 : ");
+			System.out.println("a는 " + i.indexOf("a") + "번 째에 있다.");
+			
+			System.out.print("search할 값 : ");
+			System.out.println("a는 " + i.search("a") + "번 째에 있다.");
+			
+		
+		}
+		
 }

@@ -1,5 +1,7 @@
 package part4;
 
+import java.util.Scanner;
+
 public class Q5 {
 	private int max;   // 큐의 용량
 	private int front; // 첫번째 요소 커서
@@ -145,5 +147,40 @@ public class Q5 {
 			}
 		}
 		return 0; // 검색실패
+	}
+	
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		Q5 i = new Q5(20);
+		
+		System.out.println("추가할 값 입력 : ");
+		
+		int input = sc.nextInt();
+		
+		int[] x = new int[input]; 
+		
+		for(int j=0; j<input; j++)
+		{
+			System.out.print( j + "번쨰의 값 : ");
+			x[j] = sc.nextInt();
+			i.enque(x[j]);
 		}
+		
+		System.out.println("큐의 사이즈 : " + i.size());
+		
+		System.out.print("인덱스 찾을 값 : ");
+		int index = sc.nextInt();
+		System.out.println(index + "는 " + i.indexOf(index) + "번 째에 있다.");
+	
+		System.out.println("디큐 고고");
+		i.deque();
+		
+		System.out.print("search할 값 : ");
+		int search = sc.nextInt();
+		System.out.println(search + "는 " + i.search(search) + "번 째에 있다.");
+		
+	
+	}
 }
